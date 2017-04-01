@@ -5,5 +5,8 @@ class Listing < ApplicationRecord
   validates_presence_of :name, :description, :price
 
   validates :price, numericality: { greater_than: 0 }
+
+  belongs_to :user
+
 end
 
