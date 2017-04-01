@@ -91,6 +91,10 @@ Rails.application.configure do
     }
   }
 
+
+  # REQUIRED for DEVISE 
+  config.action_mailer.default_url_options = { host: 'https://abound.herokuapp.com/' }
+
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 end
