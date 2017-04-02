@@ -1,7 +1,7 @@
 require_relative 'boot'
 
 require 'rails/all'
-
+PUBLISHABLE_KEY=pk_test_dNbyQ3qsyTe8IAikxSfnLhBl
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
