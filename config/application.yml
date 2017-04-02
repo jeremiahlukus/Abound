@@ -9,3 +9,17 @@
 # production:
 stripe_api_key: sk_test_wCVovzzFUCYefEcIDpnCzcNq 
 stripe_publishable_key: pk_test_dNbyQ3qsyTe8IAikxSfnLhBl
+
+
+
+
+Adevelopment:
+  secret_key_base: d7bfb27a3b9854b7f660901be7af0df91c5c2518b798e128c447361cb3a553ac6fad87d77d500302d2db0b5fa172fe8841f2c89b7a6e4f6f2ca24434d5312b20
+
+test:
+  secret_key_base: f297e8aa648d107ac2abc7f1cc2c098bd186d17c7c3c84346003a35d9fc3da1e9f7b24e461f1e48b773e162afbb97ad7c3508a55647d72986c1c46ec85d023c1
+
+# Do not keep production secrets in the repository,
+# instead read values from the environment.
+production:
+  secret_key_base: <%= ENV["SECRET_KEY_BASE"] %>
