@@ -1,7 +1,8 @@
 require_relative 'boot'
 
 require 'rails/all'
-PUBLISHABLE_KEY=pk_test_dNbyQ3qsyTe8IAikxSfnLhBl
+
+
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
@@ -11,5 +12,11 @@ module Etsy
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
+ Rails.configuration.stripe = {
+  :publishable_key => ENV['PUBLISHABLE_KEY'],
+  :secret_key      => ENV['SECRET_KEY']
+}
+
+Stripe.api_key = Rails.configuration.stripe[:secret_key]
   end
 end
