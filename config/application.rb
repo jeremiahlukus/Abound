@@ -14,7 +14,7 @@ module Etsy
     # -- all .rb files in that directory are automatically loaded.
  Rails.configuration.stripe = {
   :publishable_key => ENV['PUBLISHABLE_KEY'],
-  :secret_key      => ENV['SECRET_KEY']
+  :secret_key      => ENV['sk_test_wCVovzzFUCYefEcIDpnCzcNq']
 }
 
 Stripe.api_key = Rails.configuration.stripe[:secret_key]
