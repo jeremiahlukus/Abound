@@ -1,6 +1,7 @@
 class Order < ApplicationRecord
 
-  validates :address, :city, :state, presence: true
+
+  validates_presence_of :address, :city, :state
 
   belongs_to :listing
   belongs_to :buyer, class_name: "User"
