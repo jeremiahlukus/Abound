@@ -33,20 +33,19 @@ class ListingsController < ApplicationController
     @listing = Listing.new(listing_params)
     @listing.user_id = current_user.id
 
-    Stripe.api_key ="sk_test_wCVovzzFUCYefEcIDpnCzcNq"
+    if current_user.recipient.blank?
+      Stripe.api_key = ENV["STRIPE_API_KEY"]
       token = params[:stripeToken]
 
-#      account = Stripe::Account.create(
- #       :name => current_user.name,
-  #      :legal_entity[type] =>individual,
- #       :bank_account => token
-  #      :country=US
-   #     )
+      recipient = Stripe::Account.create( 
+         :managed => false, 
+         :country => 'US', 
+         :email => current_user.email 
+        ) 
 
-    #  current_user.account = recipient.id
-    
-
-current_user.save
+      current_user.recipient = recipient.id
+      current_user.save
+    end
 
     respond_to do |format|
       if @listing.save
@@ -84,19 +83,19 @@ current_user.save
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_listing
-      @listing = Listing.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_listing
+    @listing = Listing.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def listing_params
-      params.require(:listing).permit(:name, :description, :price, :image)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def listing_params
+    params.require(:listing).permit(:name, :description, :price, :image)
+  end
 
-    def check_user
-      if current_user != @listing.user
-        redirect_to root_url, alert: "Sorry, this listing belongs to someone else"
-      end
+  def check_user
+    if current_user != @listing.user
+      redirect_to root_url, alert: "Sorry, this listing belongs to someone else"
     end
+  end
 end

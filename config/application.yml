@@ -7,13 +7,14 @@
 # stripe_publishable_key: pk_test_ro9jV5SNwGb1yYlQfzG17LHK
 #
 # production:
-stripe_api_key: sk_test_wCVovzzFUCYefEcIDpnCzcNq 
-stripe_publishable_key: pk_test_dNbyQ3qsyTe8IAikxSfnLhBl
+#
+STRIPE_API_KEY: "sk_test_wCVovzzFUCYefEcIDpnCzcNq" 
+STRIPE_PUBLIC_KEY: "pk_test_dNbyQ3qsyTe8IAikxSfnLhBl"
 
 
 
 
-Adevelopment:
+development:
   secret_key_base: d7bfb27a3b9854b7f660901be7af0df91c5c2518b798e128c447361cb3a553ac6fad87d77d500302d2db0b5fa172fe8841f2c89b7a6e4f6f2ca24434d5312b20
 
 test:

@@ -26,21 +26,24 @@ class OrdersController < ApplicationController
     @order.listing_id = @listing.id
     @order.buyer_id = current_user.id
     @order.seller_id = @seller.id
-
-    Stripe.api_key ="sk_test_wCVovzzFUCYefEcIDpnCzcNq" 
+    Stripe.api_key = ENV["STRIPE_API_KEY"]
     token = params[:stripeToken]
-logger.debug "TOKEN IS: #{token}"
 
     begin
       charge = Stripe::Charge.create(
         :amount => (@listing.price * 100).floor,
         :currency => "usd",
-        :source => token,
+        :card => token
       )
-      flash[:notice] = "Thanks for ordering!"
     rescue Stripe::CardError => e
       flash[:danger] = e.message
     end
+
+    transfer = Stripe::Transfer.create(
+      :amount => (@listing.price * 95).floor,
+      :currency => "usd",
+      :destination => @seller.recipient
+    )
 
 
     respond_to do |format|
