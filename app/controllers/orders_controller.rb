@@ -40,6 +40,12 @@ class OrdersController < ApplicationController
       flash[:danger] = e.message
     end
 
+#    transfer = Stripe::Transfer.create(
+ #     :amount => (@listing.price * 25).floor,
+  #    :currency => "usd",
+     # :destination => @seller.recipient
+    #)
+
     respond_to do |format|
       if @order.save
         format.html { redirect_to root_url, notice: "Thanks for ordering!" }
