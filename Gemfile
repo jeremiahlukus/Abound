@@ -21,6 +21,8 @@ gem 'aws-sdk', '~> 2.3'
 gem 'devise'
 gem 'stripe-rails'
 gem "figaro"
+gem 'searchkick'
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
