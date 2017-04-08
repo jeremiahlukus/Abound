@@ -1,0 +1,54 @@
+someorder = FactoryGirl.create(:order)
+someorder = FactoryGirl.create(:order)
+someorder = FactoryGirl.create(:order)
+someorder = FactoryGirl.create(:order)
+someorder = FactoryGirl.create(:order, city: 'Springfield')
+exit
+FactoryGirl.create(:user)
+reload!
+FactoryGirl.create(:user)
+exit
+FactoryGirl.create(:user)
+FactoryGirl.create(:user)
+FactoryGirl.create(:user)
+exit
+User.all
+exit
+FactoryGirl.create(:listing)
+exit
+FactoryGirl.create(:listing)
+exit
+FactoryGirl.create(:listing)
+exit
+FactoryGirl.create(:listing)
+exit
+FactoryGirl.create(:listing)
+exit
+FactoryGirl.create(:listing)
+exit
+FactoryGirl.create(:listing)
+reload!
+FactoryGirl.create(:listing)
+exit
+FactoryGirl.create(:listing)
+exit
+FactoryGirl.create(:listing)
+exit
+FactoryGirl.create(:listing)
+exit
+User.all
+User.all.first
+User.all.first.listings
+User.all.first.listings.first.order
+Order.all
+exit
+Order.all
+Order.first.listing
+Order.first.seller
+exit
+exit
+exit
+puts Readline::HISTORY.entries.split("exit").last[0..-2].join("\n")
+exit
+exit
+
