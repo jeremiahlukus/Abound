@@ -6,7 +6,6 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-
 gem 'rails', '~> 5.0.2'
 gem 'puma', '~> 3.0'
 gem 'sass-rails', '~> 5.0'
@@ -22,7 +21,7 @@ gem 'devise'
 gem 'stripe-rails'
 gem "figaro"
 gem 'searchkick'
-
+gem 'acts_as_shopping_cart'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

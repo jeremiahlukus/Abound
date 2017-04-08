@@ -10,6 +10,6 @@ class Listing < ApplicationRecord
 
   belongs_to :user
   has_many :orders
-
+  has_many :shopping_cart_items
 end
 

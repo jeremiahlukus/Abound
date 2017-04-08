@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
 
   devise_for :users
+
+  resource :shopping_cart
+
   resources :listings do
     collection do
       get 'search'

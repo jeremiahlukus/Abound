@@ -11,6 +11,7 @@
     <br>
     <div class="center">
       <%= link_to "Buy it now", new_listing_order_path(@listing), class: "btn btn-primary", data: { no_turbolink: true  } %>
+      <%= link_to "Add to Cart", shopping_cart_path.create(@listing), class: "btn btn-success", data: { no_turbolink: true  } %>
     </div>
   </div>
 </div>
