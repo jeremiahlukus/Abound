@@ -1,4 +1,26 @@
-<h1>Shopping Cart</h1>
-<%= render :partial => 'shopping_cart_item', :collection => @shopping_cart.shopping_cart_items %>
+<div>
+<br>
+<div class="jumbotron center">
+  <h2>Find your Passion,<br> Discover your Dreams.</h2>
+  <div style="text-align: left; color: white">
+  <button class="btn btn-primary"><a class="btn btn-primary"href="shopping_cart/new">Checkout</a></button>
+  <div><h3><strong>Total:</strong><%= number_to_currency (@shopping_cart.total) %></h3></div>
+  </div>
+</div>
+<div class="center">
+  <div class="row">
+    <% @listings.each do |listing| %>
+      <div class="col-md-3">
+        <div class="thumbnail">
+          <%= link_to image_tag(listing.image.url), listing %>
+          <div class="caption">
+            <h3><%= listing.name %></h3>
+            <p><%= number_to_currency(listing.price) %></p>     
+            <p>Sold by: <%= listing.user.name %></p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
 
-  <div><strong>Total:</strong><%= number_to_currency (@shopping_cart.total) %></div>

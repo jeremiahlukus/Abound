@@ -1,5 +1,19 @@
-<h1>Shopping Cart</h1>
-
-<%= render :partial => 'shopping_cart_item', :collection => @shopping_cart.shopping_cart_items %>
-
-<div><strong>Total:</strong><%= number_to_currency (@shopping_cart.total) %></div>
+<div>
+  <h1>Shopping Cart Contents</h1>
+  <div style="font-size: 14px; "> <%= render :partial => 'shopping_cart_item', :collection => @shopping_cart.shopping_cart_items %> </div>
+  <div style="font-size: 18px;"><strong>Total:</strong><%= number_to_currency (@shopping_cart.total) %></div>
+<form>
+  <script
+  src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+  data-key="pk_test_dNbyQ3qsyTe8IAikxSfnLhBl"
+  data-amount= <%= number_to_currency(@shopping_cart.total) * 100 %> 
+  data-name="Abound"
+  data-description="Checkout"
+  data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+  data-locale="auto">
+  document.querySelectorAll('.stripe-button').addEventListener('click',function(){
+    <%= @shopping_cart.clear %>
+  }
+  </script>
+</form>
+</div>
