@@ -14,11 +14,17 @@ class OrdersController < ApplicationController
   def new
     @order = Order.new
     @listing = Listing.find(params[:listing_id])
-  end
+    Stripe.api_key = ENV["STRIPE_API_KEY"]
+    token = params[:stripeToken]
+    logger.debug "TOKEN IS: #{token}"
+   end
 
   # POST /orders
   # POST /orders.json
   def create
+    Stripe.api_key = ENV["STRIPE_API_KEY"]
+    token = params[:stripeToken]
+    logger.debug "TOKEN IS: #{token}"
     @order = Order.new(order_params)
     @listing = Listing.find(params[:listing_id])
     @seller = @listing.user
@@ -26,10 +32,10 @@ class OrdersController < ApplicationController
     @order.listing_id = @listing.id
     @order.buyer_id = current_user.id
     @order.seller_id = @seller.id
+    begin
     Stripe.api_key = ENV["STRIPE_API_KEY"]
     token = params[:stripeToken]
     logger.debug "TOKEN IS: #{token}"
-    begin
       charge = Stripe::Charge.create(
         :amount => (@listing.price * 100).floor,
         :currency => "usd", 
@@ -61,6 +67,9 @@ class OrdersController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_order
     @order = Order.find(params[:id])
+          Stripe.api_key = ENV["STRIPE_API_KEY"]
+      token = params[:stripeToken]
+      logger.debug "TOKEN IS: #{token}"
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
