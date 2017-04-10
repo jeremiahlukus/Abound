@@ -28,7 +28,7 @@ class OrdersController < ApplicationController
     @order.seller_id = @seller.id
     Stripe.api_key = ENV["STRIPE_API_KEY"]
     token = params[:stripeToken]
-
+    logger.debug "TOKEN IS: #{token}"
     begin
       charge = Stripe::Charge.create(
         :amount => (@listing.price * 100).floor,
